@@ -1,4 +1,4 @@
-<a href="https://codeclimate.com/github/astral-realities/astral_plane/maintainability"><img src="https://api.codeclimate.com/v1/badges/2382938806e3d889e453/maintainability" /></a> <a href="https://codeclimate.com/github/astral-realities/astral_plane/test_coverage"><img src="https://api.codeclimate.com/v1/badges/2382938806e3d889e453/test_coverage" /></a>
+[![Maintainability](https://api.codeclimate.com/v1/badges/2382938806e3d889e453/maintainability)](https://codeclimate.com/github/astral-realities/astral_plane/maintainability) [![Test Coverage](https://api.codeclimate.com/v1/badges/2382938806e3d889e453/test_coverage)](https://codeclimate.com/github/astral-realities/astral_plane/test_coverage)
 
 # AstralPlane
 
