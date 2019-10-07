@@ -24,17 +24,20 @@ class AstralPlane::AbstractHttpClient
     http = Net::HTTP.new(uri.host, uri.port)
     request = Net::HTTP::Get.new(uri.request_uri)
     request['Authorization'] = "Bearer: #{token}"
+    request['content-type'] = "application/json"
 
-    [request, http]
+    get_response(http, request)
   end
 
-  def self.post(base_url, endpoint, token)
+  def self.post(base_url, endpoint, body, token)
     uri = URI.parse(base_url + endpoint)
     http = Net::HTTP.new(uri.host, uri.port)
     request = Net::HTTP::Post.new(uri.request_uri)
     request['Authorization'] = "Bearer: #{token}"
+    request['content-type'] = "application/json"
+    request.body = body
 
-    [request, http]
+    get_response(http, request)
   end
 
   def self.delete(base_url, endpoint, token)
@@ -42,8 +45,9 @@ class AstralPlane::AbstractHttpClient
     http = Net::HTTP.new(uri.host, uri.port)
     request = Net::HTTP::Delete.new(uri.request_uri)
     request['Authorization'] = "Bearer: #{token}"
+    request['content-type'] = "application/json"
 
-    [request, http]
+    get_response(http, request)
   end
 
   def self.get_response(http, request)
