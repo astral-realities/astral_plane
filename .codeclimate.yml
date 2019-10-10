@@ -26,12 +26,8 @@ checks:
       threshold: 4
   similar-code:
     enabled: true
-    config:
-      threshold: # language-specific defaults. an override will affect all languages.
   identical-code:
     enabled: true
-    config:
-      threshold: # language-specific defaults. an override will affect all languages.
 
 plugins:
   brakeman:
