@@ -16,7 +16,7 @@ class AstralPlane::AbstractHttpClient
         http = Net::HTTP.new(uri.host, uri.port)
         request = Object.const_get("Net::HTTP::#{value}").new(uri.request_uri)
         request['Authorization'] = "Bearer: #{token}"
-        request['content-type'] = "application/json"
+        request['Content-Type'] = "application/json"
         request.body = body if body
 
         get_response(http, request)
