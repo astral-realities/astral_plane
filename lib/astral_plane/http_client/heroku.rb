@@ -1,7 +1,7 @@
 class AstralPlane::Heroku < AstralPlane::AbstractHttpClient
 
   # TODO: set this HEROKU_API_KEY in config
-  HEROKU_API_KEY = "a45610ff-94b3-48cb-ac16-2e6527559f8c"
+  HEROKU_API_KEY = "a456a"
 
   def self.custom_headers()
     {  'Accept' => "application/vnd.heroku+json; version=3",}
