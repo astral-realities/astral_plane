@@ -13,7 +13,6 @@ class AstralPlane::AbstractHttpClient
   # shared headers = all headers that are shared between vendors
   # custom headers = headers that are unique for that vendors
   # unique headers = set of unique headers on an individual request
-
   class << self
     METHODS.each do |key, value|
       define_method(key) do |endpoint, token, unique_headers = {}, body = {}|
@@ -24,11 +23,8 @@ class AstralPlane::AbstractHttpClient
         request = Object.const_get("Net::HTTP::#{value}").new(uri.request_uri)
 
         self.combined_headers(token).merge(unique_headers).each_pair do |header, value|
-          puts header
-          puts value
           request[header] = value
         end
-        request['Content-Type'] = "application/json"
         request.body = json_body if body
         get_response(http, request)
       end
@@ -64,6 +60,7 @@ class AstralPlane::AbstractHttpClient
   def self.shared_headers(token = '')
     {
       'Authorization' => "Bearer #{token}",
+      'Content-Type' => "application/json",
     }
   end
 
