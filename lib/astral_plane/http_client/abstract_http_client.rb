@@ -40,6 +40,10 @@ class AstralPlane::AbstractHttpClient
     raise NotImplementedError
   end
 
+  def self.token
+    raise NotImplementedError
+  end
+
   def self.get_response(http, request)
     http.request(request)
   end
