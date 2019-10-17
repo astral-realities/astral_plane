@@ -1,7 +1,6 @@
 class AstralPlane::DigitalOcean < AstralPlane::AbstractHttpClient
   BASE_URL = 'https://api.digitalocean.com/v2/'.freeze
-  # TODO: set this token in config
-  TOKEN = "token"
+  TOKEN = AstralPlane.config.digital_ocean_token
 
   def self.restart_server(droplet_id)
     body = '{"type":"reboot"}'
