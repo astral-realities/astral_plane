@@ -1,18 +1,29 @@
 class AstralPlane::Heroku < AstralPlane::AbstractHttpClient
-  BASE_URL = 'https://heroku.com/api/v3/'.freeze
+  BASE_URL = 'https://api.heroku.com'.freeze
 
-  def self.create_server
-    :ok
+  # TODO: set this HEROKU_API_KEY in config
+  HEROKU_API_KEY = "herok_api_key"
+  ACCEPT_HEADER= "Accept: application/vnd.heroku+json; version=3"
+
+  # Can be app id or app name
+  def self.create_server(app_name, body)
+    post("/apps/#{app_name}/dynos", HEROKU_API_KEY, ACCEPT_HEADER, body)
+    puts BASE_URL
   end
 
+  # heroku uses delete request to restart a dyno
+  def self.restart_server(app_name, dyno_name)
+    delete("/apps/#{app_name}/dynos/#{dyno_name}", HEROKU_API_KEY, ACCEPT_HEADER, nil)
+  end
 
-  def self.get(base_url = BASE_URL, endpoint, token)
-    super_array = super
-    request = super_array[0]
-    http = super_array[1]
-    request['content-type'] = "application/json"
+  #heroku uses post request to delete dyno
+  def self.delete_server(app_name, dyno_name)
+    post("/apps/#{app_name}/dynos/#{dyno_name}", HEROKU_API_KEY, ACCEPT_HEADER, nil)
+  end
 
-    get_response(http, request)
+  # does not require header: content type json
+  def self.list_server(app_name)
+    get("/apps/#{app_name}/dynos", HEROKU_API_KEY, nil, nil)
   end
 
 
